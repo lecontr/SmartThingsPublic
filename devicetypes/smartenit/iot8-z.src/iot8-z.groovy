@@ -54,8 +54,7 @@ def parse(String description) {
 		if (eventDescMap?.sourceEndpoint == "01" || eventDescMap?.endpoint == "01") {
 			if (eventDescMap?.clusterId == "000C") {
 				return createEvent(name: "inputValue", value: eventDescMap?.value)
-			}
-			else {
+			} else {
 				sendEvent(eventMap)
 			}
 		} else {
@@ -68,9 +67,7 @@ def parse(String description) {
 				log.debug "Child device: $device.deviceNetworkId:${eventDescMap.sourceEndpoint} was not found"
 			}
 		}
-	} 
-	else if (eventDescMap) 
-	{
+	} else if (eventDescMap) {
 		if (eventDescMap?.sourceEndpoint == "01" || eventDescMap?.endpoint == "01") {
 			if (eventDescMap?.clusterId == "000F" || eventDescMap?.cluster == "000F") {
 				if (eventDescMap?.value == "00") {
@@ -86,8 +83,8 @@ def parse(String description) {
 				if (ceilingVal > 100.0) {
 					ceilingVal = 100.0
 				}
+                
 				int intValue = (int) ceilingVal
-
 				return createEvent(name: "inputValue", value: intValue)
 			}
 		} else {
@@ -173,15 +170,13 @@ private void createChildDevices() {
 					label: "${device.displayName} ${endpoint}",
 					isComponent: false
 					])
-			}
-			else if (endpoint >= 3 && endpoint <= 4) {
+			} else if (endpoint >= 3 && endpoint <= 4) {
 				addChildDevice("Smartenit", "IOT8-Z-child-contact-switch", "${device.deviceNetworkId}:0${endpoint}", device.hubId,
 					[completedSetup: true,
 					label: "${device.displayName} ${endpoint}",
 					isComponent: false
 					])
-			}
-			else if (endpoint >= 5 && endpoint <= 8) {
+			} else if (endpoint >= 5 && endpoint <= 8) {
 				addChildDevice("smartthings", "ZigBee Switch", "${device.deviceNetworkId}:0${endpoint}", device.hubId,
 					[completedSetup: true,
 					label: "${device.displayName[0..-7]}${endpoint}",
