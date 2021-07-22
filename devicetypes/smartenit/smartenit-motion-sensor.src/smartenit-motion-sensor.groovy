@@ -20,7 +20,6 @@ import groovy.transform.Field
 metadata {
 	definition (name: "Smartenit Motion Sensor", namespace: "Smartenit", author: "SmartThings", mnmn: "SmartThings") {
 		capability "Actuator"
-		capability "Health Check"
 		capability "Motion Sensor"
 		capability "Sensor"
 		capability "Temperature Measurement"
